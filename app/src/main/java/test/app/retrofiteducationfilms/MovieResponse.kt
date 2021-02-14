@@ -1,7 +1,11 @@
 package test.app.retrofiteducationfilms
 
 
+import android.annotation.SuppressLint
+import android.util.Log
 import com.google.gson.annotations.SerializedName
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 data class MoviesResponse (
     var page: Int,
@@ -12,15 +16,16 @@ data class MoviesResponse (
     var totalPages: Int
     )
 
-class Movie(
-    posterPath: String,
+data class Movie(
+    @SerializedName("poster_path")
+    var posterPath: String,
     @SerializedName("adult")
     var isAdult: Boolean,
     @SerializedName("overview")
     var overview: String?,
     @SerializedName("release_date")
     var releaseDate: String?,
-    genreIds: List<Int>,
+    var genreIds: List<Int>,
     @SerializedName("id")
     var id: Int?,
     @SerializedName("original_title")
@@ -39,8 +44,6 @@ class Movie(
     var video: Boolean?,
     @SerializedName("vote_average")
     var voteAverage: Double?
-) {
-    @SerializedName("poster_path")
-    var posterPath: String? = null
-        get() = "https://image.tmdb.org/t/p/w500$field"
-}
+) {}
+
+
