@@ -8,9 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import test.app.retrofiteducationfilms.fragments.ItemFragment
 
-class MoviesAdapter(mMovies: List<Movie> , private val mContext: AppCompatActivity) : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
+class MoviesAdapter( private val mContext: AppCompatActivity) : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
 
-    private var listMovies: List<Movie> = mMovies
+    private var listMovies: List<Movie>? = null
 
     class MovieViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         internal val movieTitle: TextView = v.findViewById(R.id.title)
@@ -28,12 +28,20 @@ class MoviesAdapter(mMovies: List<Movie> , private val mContext: AppCompatActivi
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        val current = listMovies[position]
+        val current = listMovies?.get(position)
 
+        if (current != null) {
             holder.movieTitle.text = current.title
+        }
+        if (current != null) {
             holder.data.text = current.releaseDate
+        }
+        if (current != null) {
             holder.movieDescription.text = current.overview
+        }
+        if (current != null) {
             holder.rating.text = current.voteAverage.toString()
+        }
 
         holder.mItemView.setOnClickListener {
 
@@ -48,7 +56,7 @@ class MoviesAdapter(mMovies: List<Movie> , private val mContext: AppCompatActivi
     }
 
     override fun getItemCount(): Int {
-        return listMovies.size
+        return listMovies?.size ?: 0
     }
 
     fun update(movies: List<Movie>){

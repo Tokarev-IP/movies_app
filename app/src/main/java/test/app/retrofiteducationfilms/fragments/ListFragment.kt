@@ -13,18 +13,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import test.app.retrofiteducationfilms.*
 
-class ListFragment : Fragment() {
+class ListFragment(private val userViewModel: MoviesViewModel) : Fragment() {
 
-    companion object {
-        fun newInstance(): ListFragment {
-            return ListFragment()
-        }
-
-    }
+//    companion object {
+//        fun newInstance(): ListFragment {
+//            return ListFragment()
+//        }
+//
+//    }
 
     private lateinit var moviesData : List<Movie>
 
-    private val userViewModel by lazy {ViewModelProviders.of(this).get(MoviesViewModel::class.java)}
+//    private val userViewModel by lazy {ViewModelProviders.of(this).get(MoviesViewModel::class.java)}
 
     @SuppressLint("CheckResult")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -37,11 +37,33 @@ class ListFragment : Fragment() {
         val recyclerView = mInflater.findViewById<RecyclerView>(R.id.recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(context)
 
+        val initialData = Movie("",true, "", null,
+                null, null, "","", "", "",
+                null, null, null, null)
+
+        recyclerView.adapter = MoviesAdapter( context as AppCompatActivity)
+
+        val adapter = MoviesAdapter(context as AppCompatActivity)
+
 //        val adapter = MoviesAdapter(context as AppCompatActivity)
+
+//        MovieApiClient.apiClient.getTopRatedMovies("cd4ce7cfb36a8621325e99dac72491cb", "en-US")
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(
+//                        { it ->
+//                            //moviesData = it.results
+//                            mViewModel.setData(it.results)
+//                            recyclerView.adapter = MoviesAdapter(null, context as AppCompatActivity)
+//                        },
+//                        { error ->
+//                            Log.e("ERROR", error.toString())
+//                        }
+//                )
 
         userViewModel.getMovieList().observe(this, Observer {
             it?.let {
-                recyclerView.adapter = MoviesAdapter(it, context as AppCompatActivity)
+                adapter.update(it)
               //  MoviesAdapter(context as AppCompatActivity).update(it)
             }
         })

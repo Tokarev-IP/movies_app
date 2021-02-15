@@ -2,7 +2,6 @@ package test.app.retrofiteducationfilms
 
 import android.annotation.SuppressLint
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -13,12 +12,33 @@ class MoviesViewModel : ViewModel() {
 
     var moviesData: MutableLiveData<List<Movie>> = MutableLiveData()
 
-    // My themoviedb.org API KEY
-   // val API_KEY = "cd4ce7cfb36a8621325e99dac72491cb"
-
     init {
-        if (MoviesRepository().moviesData!=null) moviesData.value = MoviesRepository().moviesData
+        moviesData.value = 
     }
 
+    fun setData(mData: List<Movie>){
+        moviesData.value = mData
+    }
+
+    // My themoviedb.org API KEY
+    // val API_KEY = "cd4ce7cfb36a8621325e99dac72491cb"
+
     fun getMovieList() = moviesData
+
+    fun downloadTopRatedMovies() {
+
+        MovieApiClient.apiClient.getTopRatedMovies("cd4ce7cfb36a8621325e99dac72491cb", "en-US")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { it ->
+                            //moviesData = it.results
+                            setData(it.results)
+                        },
+                        { error ->
+                            Log.e("ERROR", error.toString())
+                        }
+                )
+
+    }
 }
