@@ -8,6 +8,13 @@
     android:id="@+id/list_fragment_id"
     >
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/api_start"
+        android:text="Загрузить"
+        />
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_height="match_parent"
         android:layout_width="match_parent"

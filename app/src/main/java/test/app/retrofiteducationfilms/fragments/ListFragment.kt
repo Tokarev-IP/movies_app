@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -43,18 +44,23 @@ class ListFragment() : Fragment() {
 
 //        val adapter = MoviesAdapter(context as AppCompatActivity)
 
-        MovieApiClient.apiClient
-                .getTopRatedMovies("cd4ce7cfb36a8621325e99dac72491cb", "en-US")
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        { it ->
-                           recyclerView.adapter = MoviesAdapter(it.results, context as AppCompatActivity)
-                        },
-                        { error ->
-                            Log.e("ERROR", error.toString())
-                        }
-                )
+        val downloadButton: Button = mInflater.findViewById(R.id.api_start)
+
+        downloadButton.setOnClickListener {
+
+            MovieApiClient.apiClient
+                    .getTopRatedMovies("cd4ce7cfb36a8621325e99dac72491cb", "en-US")
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(
+                            { it ->
+                                recyclerView.adapter = MoviesAdapter(it.results, context as AppCompatActivity)
+                            },
+                            { error ->
+                                Log.e("ERROR", error.toString())
+                            }
+                    )
+        }
 
 //        userViewModel.getMovieList().observe(this, Observer {
 //            it?.let {
