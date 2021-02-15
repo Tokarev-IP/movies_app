@@ -13,7 +13,13 @@ class MoviesViewModel : ViewModel() {
     var moviesData: MutableLiveData<List<Movie>> = MutableLiveData()
 
     init {
-        moviesData.value = 
+        val initialData = Movie("",true, "", null,
+                null, null, "","", "", "",
+                null, null, null, null)
+
+        val array: ArrayList<Movie> = ArrayList()
+        array.add(initialData)
+        moviesData.value = array
     }
 
     fun setData(mData: List<Movie>){

@@ -8,9 +8,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import test.app.retrofiteducationfilms.fragments.ItemFragment
 
-class MoviesAdapter( private val mContext: AppCompatActivity) : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
+class MoviesAdapter(private val listMovies: List<Movie>, private val mContext: AppCompatActivity)
+    : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
 
-    private var listMovies: List<Movie>? = null
+//    private var listMovies: List<Movie> = ArrayList()
 
     class MovieViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         internal val movieTitle: TextView = v.findViewById(R.id.title)
@@ -28,23 +29,14 @@ class MoviesAdapter( private val mContext: AppCompatActivity) : RecyclerView.Ada
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        val current = listMovies?.get(position)
+        val current = listMovies[position]
 
-        if (current != null) {
-            holder.movieTitle.text = current.title
-        }
-        if (current != null) {
-            holder.data.text = current.releaseDate
-        }
-        if (current != null) {
-            holder.movieDescription.text = current.overview
-        }
-        if (current != null) {
-            holder.rating.text = current.voteAverage.toString()
-        }
+        holder.movieTitle.text = current.title
+        holder.data.text = current.releaseDate
+        holder.movieDescription.text = current.overview
+        holder.rating.text = current.voteAverage.toString()
 
         holder.mItemView.setOnClickListener {
-
             mContext.supportFragmentManager
                     .beginTransaction()
                     .replace( R.id.fragment_container, ItemFragment.newInstance())
@@ -56,12 +48,12 @@ class MoviesAdapter( private val mContext: AppCompatActivity) : RecyclerView.Ada
     }
 
     override fun getItemCount(): Int {
-        return listMovies?.size ?: 0
+        return listMovies.size
     }
 
-    fun update(movies: List<Movie>){
-        listMovies = movies
-        notifyDataSetChanged()
-    }
+//    fun update(movies: List<Movie>){
+//        listMovies = movies
+//        notifyDataSetChanged()
+//    }
 }
 
