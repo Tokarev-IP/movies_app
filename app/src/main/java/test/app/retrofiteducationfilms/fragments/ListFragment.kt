@@ -32,7 +32,7 @@ class ListFragment() : Fragment() {
 
         val mInflater = inflater.inflate(R.layout.fragment_list, container, false)
 
-//        val repository = MoviesRepository(userViewModel)
+       val repository = MoviesRepository(userViewModel)
 
         val recyclerView = mInflater.findViewById<RecyclerView>(R.id.recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(context)
@@ -43,11 +43,11 @@ class ListFragment() : Fragment() {
         val downloadTop: Button = mInflater.findViewById(R.id.api_top)
 
         downloadPopular.setOnClickListener {
-            MoviesRepository(userViewModel).downloadPopularMovies()
+            repository.downloadPopularMovies()
         }
 
         downloadTop.setOnClickListener {
-            MoviesRepository(userViewModel).downloadTopRatedMovies()
+            repository.downloadTopRatedMovies()
         }
 
         userViewModel.getMovieList().observe(this, Observer {
@@ -55,15 +55,6 @@ class ListFragment() : Fragment() {
                 adapter.setData(it)
             }
         })
-
-//        Picasso.get()
-//            .load("https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1B2YJCYyRudISmfSWCRfc95gAtq.jpg")
-//            .placeholder(R.drawable.ic_baseline_image_search_24)
-//            .error(R.drawable.ic_baseline_image_search_24)
-//            //.resize(150, 150)
-//            //.centerCrop()
-//            .noFade()
-//            .into(image_View)
 
         return mInflater
     }
