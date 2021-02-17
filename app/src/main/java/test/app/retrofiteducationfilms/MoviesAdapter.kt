@@ -8,10 +8,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import test.app.retrofiteducationfilms.fragments.ItemFragment
 
-class MoviesAdapter(private val listMovies: List<Movie>, private val mContext: AppCompatActivity)
+class MoviesAdapter(private val mContext: AppCompatActivity)
     : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
 
-//    private var listMovies: List<Movie> = ArrayList()
+    private var listMovies: List<Movie> = emptyList<Movie>()
 
     class MovieViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         internal val movieTitle: TextView = v.findViewById(R.id.title)
@@ -51,9 +51,9 @@ class MoviesAdapter(private val listMovies: List<Movie>, private val mContext: A
         return listMovies.size
     }
 
-//    fun update(movies: List<Movie>){
-//        listMovies = movies
-//        notifyDataSetChanged()
-//    }
+    fun setData(movies: List<Movie>){
+        listMovies = movies
+        notifyDataSetChanged()
+    }
 }
 

@@ -18,24 +18,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-//        val repository = MoviesRepository(userViewModel)
-
-        val startButton: Button = findViewById(R.id.start_button)
-        startButton.setOnClickListener {
-//            userViewModel.downloadTopRatedMovies()
-//            repository.downloadTopRatedMovies()
-        }
-
-//        MoviesRepository().downloadTopRatedMovies()
-
-
             supportFragmentManager
                 .beginTransaction()
                 .add(R.id.fragment_container, ListFragment.newInstance())
                 .addToBackStack(null)
                 .commit()
-
 
 //        // My themoviedb.org API KEY
 //        private val API_KEY = "cd4ce7cfb36a8621325e99dac72491cb"

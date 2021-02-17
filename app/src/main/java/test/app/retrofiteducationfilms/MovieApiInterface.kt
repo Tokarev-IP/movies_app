@@ -13,15 +13,9 @@ interface MovieApiInterface {
         @Query("language") language: String
     ): Single<MoviesResponse>
 
-    @GET("/tv/popular")
+    @GET("movie/popular")
     fun getPopularMovies(
-        @Query("api_key") apiKey: String
-    ): Single<MoviesResponse>
-
-    @GET("movie/{movie_id}/images")
-    fun getImagesMovies(
-            @Path("movie_id") productId: Int,
-            @Query("api_key") apiKey: String
+            @Query("api_key") apiKey: String,
     ): Single<MoviesResponse>
 
 }

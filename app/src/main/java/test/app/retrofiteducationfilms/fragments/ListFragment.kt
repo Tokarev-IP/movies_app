@@ -25,36 +25,42 @@ class ListFragment() : Fragment() {
         }
     }
 
-//    private val userViewModel by lazy {ViewModelProviders.of(this).get(MoviesViewModel::class.java)}
+    private val userViewModel by lazy { ViewModelProviders.of(this).get(MoviesViewModel::class.java) }
 
     @SuppressLint("CheckResult")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-       // MoviesRepository().downloadTopRatedMovies()
-
         val mInflater = inflater.inflate(R.layout.fragment_list, container, false)
 
         val recyclerView = mInflater.findViewById<RecyclerView>(R.id.recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(context)
-
-//        val adapter = MoviesAdapter(context as AppCompatActivity)
-
-        //adapter.update(array)
-
-//        val adapter = MoviesAdapter(context as AppCompatActivity)
+        val adapter = MoviesAdapter(context as AppCompatActivity)
+        recyclerView.adapter = adapter
 
         val downloadButton: Button = mInflater.findViewById(R.id.api_start)
 
-        downloadButton.setOnClickListener {
+        MovieApiClient.apiClient
+                .getTopRatedMovies("cd4ce7cfb36a8621325e99dac72491cb", "en-US")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { it ->
+                            adapter.setData(it.results)
+                        },
+                        { error ->
+                            Log.e("ERROR", error.toString())
+                        }
+                )
 
+        downloadButton.setOnClickListener {
             MovieApiClient.apiClient
-                    .getTopRatedMovies("cd4ce7cfb36a8621325e99dac72491cb", "en-US")
+                    .getPopularMovies("cd4ce7cfb36a8621325e99dac72491cb")
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(
                             { it ->
-                                recyclerView.adapter = MoviesAdapter(it.results, context as AppCompatActivity)
+                                userViewModel.setData(it.results)
                             },
                             { error ->
                                 Log.e("ERROR", error.toString())
@@ -62,12 +68,11 @@ class ListFragment() : Fragment() {
                     )
         }
 
-//        userViewModel.getMovieList().observe(this, Observer {
-//            it?.let {
-//                adapter.update(it)
-//              //  MoviesAdapter(context as AppCompatActivity).update(it)
-//            }
-//        })
+        userViewModel.getMovieList().observe(this, Observer {
+            it?.let {
+                adapter.setData(it)
+            }
+        })
 
 //        Picasso.get()
 //            .load("https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1B2YJCYyRudISmfSWCRfc95gAtq.jpg")

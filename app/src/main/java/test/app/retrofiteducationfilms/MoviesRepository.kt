@@ -9,12 +9,10 @@ import io.reactivex.schedulers.Schedulers
 
 class MoviesRepository(private val mviewModel : MoviesViewModel) {
 
-    lateinit var moviesData: List<Movie>
-//    lateinit var mViewModel: MoviesViewModel
+    var moviesData: List<Movie> = emptyList()
 
         @SuppressLint("CheckResult")
         fun downloadTopRatedMovies() {
-
             MovieApiClient.apiClient.getTopRatedMovies("cd4ce7cfb36a8621325e99dac72491cb", "en-US")
                     .subscribeOn(Schedulers.io())
                     .observeOn(Schedulers.io())
