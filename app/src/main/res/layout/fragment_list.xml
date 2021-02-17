@@ -11,8 +11,15 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:id="@+id/api_start"
-        android:text="Загрузить"
+        android:id="@+id/api_popular"
+        android:text="Загрузить популярные фильмы"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/api_top"
+        android:text="Загрузить топ фильмы"
         />
 
     <androidx.recyclerview.widget.RecyclerView

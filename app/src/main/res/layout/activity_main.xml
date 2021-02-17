@@ -6,12 +6,6 @@
     android:orientation="vertical"
     >
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:id="@+id/start_button"
-        android:text="Стартуем"
-        />
 <FrameLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"

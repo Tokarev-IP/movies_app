@@ -2,7 +2,6 @@ package test.app.retrofiteducationfilms.fragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -33,39 +32,22 @@ class ListFragment() : Fragment() {
 
         val mInflater = inflater.inflate(R.layout.fragment_list, container, false)
 
+//        val repository = MoviesRepository(userViewModel)
+
         val recyclerView = mInflater.findViewById<RecyclerView>(R.id.recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(context)
         val adapter = MoviesAdapter(context as AppCompatActivity)
         recyclerView.adapter = adapter
 
-        val downloadButton: Button = mInflater.findViewById(R.id.api_start)
+        val downloadPopular: Button = mInflater.findViewById(R.id.api_popular)
+        val downloadTop: Button = mInflater.findViewById(R.id.api_top)
 
-        MovieApiClient.apiClient
-                .getTopRatedMovies("cd4ce7cfb36a8621325e99dac72491cb", "en-US")
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        { it ->
-                            adapter.setData(it.results)
-                        },
-                        { error ->
-                            Log.e("ERROR", error.toString())
-                        }
-                )
+        downloadPopular.setOnClickListener {
+            MoviesRepository(userViewModel).downloadPopularMovies()
+        }
 
-        downloadButton.setOnClickListener {
-            MovieApiClient.apiClient
-                    .getPopularMovies("cd4ce7cfb36a8621325e99dac72491cb")
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(
-                            { it ->
-                                userViewModel.setData(it.results)
-                            },
-                            { error ->
-                                Log.e("ERROR", error.toString())
-                            }
-                    )
+        downloadTop.setOnClickListener {
+            MoviesRepository(userViewModel).downloadTopRatedMovies()
         }
 
         userViewModel.getMovieList().observe(this, Observer {
