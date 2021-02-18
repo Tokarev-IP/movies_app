@@ -12,9 +12,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import test.app.retrofiteducationfilms.*
+import test.app.retrofiteducationfilms.db.MovieDao
+import test.app.retrofiteducationfilms.db.MoviesRoomDatabase
 
 class ListFragment() : Fragment() {
 
@@ -32,11 +32,14 @@ class ListFragment() : Fragment() {
 
         val mInflater = inflater.inflate(R.layout.fragment_list, container, false)
 
-       val repository = MoviesRepository(userViewModel)
+        val repository = MoviesRepository(userViewModel)
+
+        val db= MoviesRoomDatabase.getDatabase(context as AppCompatActivity)
+        val wordDao: MovieDao = db.movieDao()
 
         val recyclerView = mInflater.findViewById<RecyclerView>(R.id.recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(context)
-        val adapter = MoviesAdapter(context as AppCompatActivity)
+        val adapter = MoviesAdapter(context as AppCompatActivity, wordDao)
         recyclerView.adapter = adapter
 
         val downloadPopular: Button = mInflater.findViewById(R.id.api_popular)

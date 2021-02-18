@@ -9,11 +9,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
+import test.app.retrofiteducationfilms.db.MovieDao
 import test.app.retrofiteducationfilms.db.Movies
-import test.app.retrofiteducationfilms.db.MoviesRoomDatabase
 import test.app.retrofiteducationfilms.fragments.ItemFragment
 
-class MoviesAdapter(private val mContext: AppCompatActivity)
+class MoviesAdapter(private val mContext: AppCompatActivity, private val wordDao: MovieDao)
     : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
 
     private var listMovies: List<Movie> = emptyList()
@@ -55,8 +55,9 @@ class MoviesAdapter(private val mContext: AppCompatActivity)
                 .into(holder.mImageView)
 
         holder.mFavView.setOnClickListener {
-//            val mMovies = Movies()
-//            MoviesRoomDatabase.getDatabase(this).movieDao().insert()
+            wordDao.insert(Movies(current.id, current.isAdult, current.overview, current.releaseDate,
+                    current.originalTitle, current.originalLanguage, current.voteAverage,
+            current.posterPath, current.backdropPath))
         }
 
         holder.mItemView.setOnClickListener {

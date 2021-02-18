@@ -31,10 +31,10 @@ data class Movies(
     val voteAverage: Double,
 
     @ColumnInfo(name = "poster_path")
-    val posterPath: String,
+    val posterPath: String?,
 
     @ColumnInfo(name = "backdrop_path")
-    val backdropPath: String,
+    val backdropPath: String?,
 )
 
 
