@@ -55,8 +55,8 @@ class MoviesAdapter(private val mContext: AppCompatActivity)
                 .into(holder.mImageView)
 
         holder.mFavView.setOnClickListener {
-            val mMovies = Movies()
-            MoviesRoomDatabase.getDatabase(this).movieDao().insert()
+//            val mMovies = Movies()
+//            MoviesRoomDatabase.getDatabase(this).movieDao().insert()
         }
 
         holder.mItemView.setOnClickListener {
