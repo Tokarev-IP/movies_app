@@ -8,6 +8,10 @@ import com.google.gson.annotations.SerializedName
 @Entity (tableName = "favorite_movies")
 data class Movies(
 
+    @PrimaryKey
+    @ColumnInfo(name = "id")
+    val id: Int,
+
     @ColumnInfo(name = "adult")
     val isAdult: Boolean,
 
@@ -16,10 +20,6 @@ data class Movies(
 
     @ColumnInfo(name = "release_date")
     val releaseDate: String,
-
-    @PrimaryKey
-    @ColumnInfo(name = "id")
-    val id: Int,
 
     @ColumnInfo(name = "title")
     val title: String,

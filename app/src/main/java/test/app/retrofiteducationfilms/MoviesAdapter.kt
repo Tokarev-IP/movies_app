@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
+import test.app.retrofiteducationfilms.db.Movies
+import test.app.retrofiteducationfilms.db.MoviesRoomDatabase
 import test.app.retrofiteducationfilms.fragments.ItemFragment
 
 class MoviesAdapter(private val mContext: AppCompatActivity)
@@ -24,6 +26,7 @@ class MoviesAdapter(private val mContext: AppCompatActivity)
         internal val adultView: TextView = v.findViewById(R.id.adult_view)
         internal val mItemView : View = v.findViewById(R.id.movie_fragment)
         internal val mImageView : ImageView = v.findViewById(R.id.image_view)
+        internal val mFavView : ImageView = v.findViewById(R.id.favorite_image)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
@@ -50,6 +53,11 @@ class MoviesAdapter(private val mContext: AppCompatActivity)
                 .centerCrop()
                 .noFade()
                 .into(holder.mImageView)
+
+        holder.mFavView.setOnClickListener {
+            val mMovies = Movies()
+            MoviesRoomDatabase.getDatabase(this).movieDao().insert()
+        }
 
         holder.mItemView.setOnClickListener {
             mIFragment = ItemFragment(current)

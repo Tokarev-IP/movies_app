@@ -83,6 +83,17 @@
             android:textColor="#FF0000"
             android:textStyle="bold"
             android:layout_marginBottom="10dp"
+            android:layout_gravity="end"
+            />
+
+        <ImageView
+            android:id="@+id/favorite_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_star_rate_35"
+            app:tint="@color/purple_200"
+            android:layout_marginTop="2dp"
+            android:layout_gravity="end"
             />
 
     </LinearLayout>
