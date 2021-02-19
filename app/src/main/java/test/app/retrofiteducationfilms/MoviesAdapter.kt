@@ -1,10 +1,12 @@
 package test.app.retrofiteducationfilms
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
@@ -12,6 +14,8 @@ import com.squareup.picasso.Picasso
 import test.app.retrofiteducationfilms.db.MovieDao
 import test.app.retrofiteducationfilms.db.Movies
 import test.app.retrofiteducationfilms.fragments.ItemFragment
+import io.reactivex.schedulers.Schedulers
+import io.reactivex.android.schedulers.AndroidSchedulers
 
 class MoviesAdapter(private val mContext: AppCompatActivity, private val wordDao: MovieDao)
     : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
@@ -56,8 +60,19 @@ class MoviesAdapter(private val mContext: AppCompatActivity, private val wordDao
 
         holder.mFavView.setOnClickListener {
             wordDao.insert(Movies(current.id, current.isAdult, current.overview, current.releaseDate,
-                    current.originalTitle, current.originalLanguage, current.voteAverage,
+                    current.title, current.originalLanguage, current.voteAverage,
             current.posterPath, current.backdropPath))
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(
+                            {
+                            Toast.makeText(mContext, "Complete", Toast.LENGTH_LONG)
+                            },
+                            { error ->
+                        Log.e("ERROR", error.toString())
+                    }
+                    )
+
         }
 
         holder.mItemView.setOnClickListener {
