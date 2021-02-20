@@ -15,6 +15,9 @@ import androidx.recyclerview.widget.RecyclerView
 import test.app.retrofiteducationfilms.*
 import test.app.retrofiteducationfilms.db.MovieDao
 import test.app.retrofiteducationfilms.db.MoviesRoomDatabase
+import test.app.retrofiteducationfilms.list.MoviesAdapter
+import test.app.retrofiteducationfilms.list.MoviesRepository
+import test.app.retrofiteducationfilms.list.MoviesViewModel
 
 class ListFragment() : Fragment() {
 

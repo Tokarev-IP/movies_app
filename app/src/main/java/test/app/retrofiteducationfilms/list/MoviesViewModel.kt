@@ -1,8 +1,9 @@
-package test.app.retrofiteducationfilms
+package test.app.retrofiteducationfilms.list
 
 import android.annotation.SuppressLint
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import test.app.retrofiteducationfilms.api.Movie
 
 @SuppressLint("CheckResult")
 class MoviesViewModel : ViewModel() {

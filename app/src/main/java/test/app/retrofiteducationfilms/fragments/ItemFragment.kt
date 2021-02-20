@@ -7,12 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.lifecycle.ViewModelProviders
 import com.squareup.picasso.Picasso
-import org.w3c.dom.Text
-import test.app.retrofiteducationfilms.Movie
-import test.app.retrofiteducationfilms.MoviesViewModel
 import test.app.retrofiteducationfilms.R
+import test.app.retrofiteducationfilms.api.Movie
 
 class ItemFragment(private val current: Movie) : Fragment() {
 

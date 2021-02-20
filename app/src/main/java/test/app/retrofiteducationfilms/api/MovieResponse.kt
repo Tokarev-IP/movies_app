@@ -1,4 +1,4 @@
-package test.app.retrofiteducationfilms
+package test.app.retrofiteducationfilms.api
 
 import com.google.gson.annotations.SerializedName
 

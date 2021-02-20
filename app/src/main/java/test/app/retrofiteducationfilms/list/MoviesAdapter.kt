@@ -1,4 +1,4 @@
-package test.app.retrofiteducationfilms
+package test.app.retrofiteducationfilms.list
 
 import android.annotation.SuppressLint
 import android.util.Log
@@ -17,6 +17,8 @@ import test.app.retrofiteducationfilms.db.Movies
 import test.app.retrofiteducationfilms.fragments.ItemFragment
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.android.schedulers.AndroidSchedulers
+import test.app.retrofiteducationfilms.R
+import test.app.retrofiteducationfilms.api.Movie
 
 class MoviesAdapter(private val mContext: AppCompatActivity, private val wordDao: MovieDao)
     : RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
@@ -80,7 +82,7 @@ class MoviesAdapter(private val mContext: AppCompatActivity, private val wordDao
             mIFragment = ItemFragment(current)
             mContext.supportFragmentManager
                     .beginTransaction()
-                    .replace( R.id.fragment_container, mIFragment)
+                    .replace(R.id.fragment_container, mIFragment)
                     .addToBackStack(null)
                     .commit()
 

@@ -1,9 +1,10 @@
-package test.app.retrofiteducationfilms
+package test.app.retrofiteducationfilms.list
 
 import android.annotation.SuppressLint
 import android.util.Log
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.android.schedulers.AndroidSchedulers
+import test.app.retrofiteducationfilms.api.MovieApiClient
 
 class MoviesRepository(private val mviewModel : MoviesViewModel) {
 

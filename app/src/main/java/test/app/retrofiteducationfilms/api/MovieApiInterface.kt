@@ -1,8 +1,9 @@
-package test.app.retrofiteducationfilms
+package test.app.retrofiteducationfilms.api
 
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
+import test.app.retrofiteducationfilms.api.MoviesResponse
 
 interface MovieApiInterface {
 
