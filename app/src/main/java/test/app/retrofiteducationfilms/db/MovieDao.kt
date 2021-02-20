@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import io.reactivex.Single
+import io.reactivex.Completable
 
 @Dao
 interface MovieDao {
@@ -13,8 +14,8 @@ interface MovieDao {
     fun getAll(): Single<Movies>
 
     @Insert
-    fun insert(movie: Movies)
+    fun insert(movie: Movies): Completable
 
     @Delete
-    fun delete(movie: Movies)
+    fun delete(movie: Movies): Completable
 }
