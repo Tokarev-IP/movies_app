@@ -14,8 +14,6 @@ import com.squareup.picasso.Picasso
 import test.app.retrofiteducationfilms.db.MovieDao
 import test.app.retrofiteducationfilms.db.Movies
 import test.app.retrofiteducationfilms.fragments.ItemFragment
-import io.reactivex.Completable
-import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.android.schedulers.AndroidSchedulers
 
@@ -74,6 +72,7 @@ class MoviesAdapter(private val mContext: AppCompatActivity, private val wordDao
                                 Log.e("ERROR", error.toString())
                             }
                     )
+
         }
 
         holder.mItemView.setOnClickListener {

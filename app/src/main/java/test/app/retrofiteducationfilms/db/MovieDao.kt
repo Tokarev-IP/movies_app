@@ -10,7 +10,7 @@ import io.reactivex.Completable
 @Dao
 interface MovieDao {
 
-    @Query ("SELECT * FROM favorite_movies")
+    @Query("SELECT * FROM favorite_movies")
     fun getAll(): Single<Movies>
 
     @Insert
