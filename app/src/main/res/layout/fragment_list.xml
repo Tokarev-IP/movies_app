@@ -8,6 +8,8 @@
     tools:context="fragments.ListFragment"
     android:orientation="vertical"
     android:id="@+id/list_fragment_id"
+    android:background="@color/white"
+    android:paddingHorizontal="5dp"
     >
 
     <com.google.android.material.appbar.AppBarLayout

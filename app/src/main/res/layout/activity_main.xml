@@ -3,7 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/purple_700"
+    >
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -11,6 +13,14 @@
         android:layout_height="35dp"
         style="@style/Toolbar"
         app:titleTextColor="@color/white"
+    />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/bottom_nav"
+        app:menu="@menu/menu_bottom_navigation"
+        android:layout_gravity="bottom"
         />
 
 <FrameLayout
@@ -18,5 +28,6 @@
     android:layout_height="match_parent"
     android:id="@+id/fragment_container"
     />
+
 
     </LinearLayout>

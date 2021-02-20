@@ -11,7 +11,7 @@ import io.reactivex.Completable
 interface MovieDao {
 
     @Query("SELECT * FROM favorite_movies")
-    fun getAll(): Single<Movies>
+    fun getAll(): Single<List<Movies>>
 
     @Insert
     fun insert(movie: Movies): Completable

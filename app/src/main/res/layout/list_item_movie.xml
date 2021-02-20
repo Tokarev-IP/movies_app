@@ -7,9 +7,8 @@
     android:layout_height="wrap_content"
     tools:context=".fragments.ItemFragment"
     android:orientation="horizontal"
-    android:paddingVertical="10dp"
-    android:paddingHorizontal="10dp"
     android:layout_marginBottom="5dp"
+    android:paddingHorizontal="5dp"
     android:id="@+id/movie_fragment"
     android:background="@color/gray"
     >
@@ -90,9 +89,7 @@
             android:id="@+id/favorite_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_favorite_border_24"
-            app:tint="@color/purple_200"
-            android:layout_marginTop="2dp"
+            android:src="@drawable/ic_baseline_favorite_30"
             android:layout_gravity="end"
             />
 
