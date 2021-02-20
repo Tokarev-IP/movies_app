@@ -1,5 +1,6 @@
 package test.app.retrofiteducationfilms
 
+import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -40,6 +41,7 @@ class MoviesAdapter(private val mContext: AppCompatActivity, private val wordDao
         return MovieViewHolder(view)
     }
 
+    @SuppressLint("ShowToast")
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         val current = listMovies[position]
 
@@ -72,7 +74,6 @@ class MoviesAdapter(private val mContext: AppCompatActivity, private val wordDao
                                 Log.e("ERROR", error.toString())
                             }
                     )
-
         }
 
         holder.mItemView.setOnClickListener {
