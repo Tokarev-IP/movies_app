@@ -70,5 +70,10 @@ dependencies {
     kapt "androidx.room:room-compiler:2.2.6"
     implementation "androidx.room:room-ktx:2.2.6"
     implementation "androidx.room:room-rxjava2:2.2.6"
+    //Paged List
+    implementation "androidx.paging:paging-runtime-ktx:2.1.2"
+    testImplementation "androidx.paging:paging-common-ktx:2.1.2"
+    implementation "androidx.paging:paging-rxjava2-ktx:2.1.2"
+    implementation 'androidx.paging:paging-runtime-ktx:3.0.0-beta01'
 
 }

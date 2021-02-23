@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import test.app.retrofiteducationfilms.fragments.AllFragment
 import test.app.retrofiteducationfilms.fragments.FavoriteFragment
 import test.app.retrofiteducationfilms.fragments.ListFragment
 
@@ -30,6 +31,12 @@ class MainActivity : AppCompatActivity() {
                 R.id.action_two -> supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.fragment_container, FavoriteFragment.newInstance())
+                    .addToBackStack(null)
+                    .commit()
+
+                R.id.action_three -> supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, AllFragment.newInstance())
                     .addToBackStack(null)
                     .commit()
             }

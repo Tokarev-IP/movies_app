@@ -1,5 +1,6 @@
 package test.app.retrofiteducationfilms.db
 
+import androidx.paging.PagedList
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert

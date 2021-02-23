@@ -8,5 +8,8 @@
         android:id="@+id/action_two"
         android:icon="@drawable/ic_baseline_favorite_border_24"
         android:title="Favorites" />
-
+    <item
+        android:id="@+id/action_three"
+        android:icon="@drawable/ic_baseline_list_alt_40"
+        android:title="All" />
 </menu>

@@ -27,7 +27,7 @@ class ListFragment() : Fragment() {
         }
     }
 
-    private val userViewModel by lazy { ViewModelProviders.of(this).get(MoviesViewModel::class.java) }
+    private val userViewModel by lazy { ViewModelProviders.of(this).get(MoviesViewModel::class.java)}
 
     @SuppressLint("CheckResult")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

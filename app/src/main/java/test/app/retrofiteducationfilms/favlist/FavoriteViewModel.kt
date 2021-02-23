@@ -2,6 +2,7 @@ package test.app.retrofiteducationfilms.favlist
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.paging.PagedList
 import test.app.retrofiteducationfilms.db.Movies
 
 class FavoriteViewModel: ViewModel() {
@@ -12,5 +13,5 @@ class FavoriteViewModel: ViewModel() {
         favMoviesData.value = mData
     }
 
-    fun getMovieList() = favMoviesData
+    fun getMovieList() = favMoviesData 
 }

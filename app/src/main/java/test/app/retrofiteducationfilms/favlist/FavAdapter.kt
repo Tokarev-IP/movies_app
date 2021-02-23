@@ -55,4 +55,5 @@ class FavAdapter() : RecyclerView.Adapter<FavAdapter.FavMovieViewHolder>() {
         listMovies = movies
         notifyDataSetChanged()
     }
+
 }
