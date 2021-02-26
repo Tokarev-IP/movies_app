@@ -1,6 +1,7 @@
 package test.app.retrofiteducationfilms.db
 
-import androidx.paging.PagedList
+
+import androidx.paging.DataSource
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -12,7 +13,7 @@ import io.reactivex.Completable
 interface MovieDao {
 
     @Query("SELECT * FROM favorite_movies")
-    fun getAll(): Single<List<Movies>>
+    fun getAll(): DataSource.Factory<Int, Movies>
 
     @Insert
     fun insert(movie: Movies): Completable
