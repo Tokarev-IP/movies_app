@@ -14,6 +14,7 @@ import test.app.retrofiteducationfilms.R
 import test.app.retrofiteducationfilms.alllist.AllAdapter
 import test.app.retrofiteducationfilms.alllist.AllRepository
 import test.app.retrofiteducationfilms.alllist.AllViewModel
+import test.app.retrofiteducationfilms.alllist.PagedDataSource
 
 
 class AllFragment : Fragment() {
@@ -33,16 +34,13 @@ class AllFragment : Fragment() {
 
         val recyclerView = minflater.findViewById<RecyclerView>(R.id.all_recycler)
         recyclerView.layoutManager = LinearLayoutManager(context)
-        val adapter = AllAdapter()
-        recyclerView.adapter = adapter
+        val allAdapter = AllAdapter()
+        recyclerView.adapter = allAdapter
 
-        val allrep = AllRepository(allViewModel)
-        allrep.getNowPlayingMovies()
+        val pdataSource = PagedDataSource()
 
-        allViewModel.getMovieList().observe(this, Observer {
-            it?.let {
-                adapter.setData(it)
-            }
+        allViewModel.getMovies().observe(this, {
+            allAdapter.submitList(it)
         })
 
         return minflater

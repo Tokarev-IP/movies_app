@@ -19,6 +19,7 @@ class MoviesRepository(private val mviewModel : MoviesViewModel) {
                 .subscribe(
                         { it ->
                             mviewModel.setData(it.results)
+                            Log.d("COMPLETE", "COMPLETE")
                         },
                         { error ->
                             Log.e("ERROR", error.toString())
@@ -35,6 +36,7 @@ class MoviesRepository(private val mviewModel : MoviesViewModel) {
                 .subscribe(
                         { it ->
                             mviewModel.setData(it.results)
+                            Log.d("COMPLETE", "COMPLETE")
                         },
                         { error ->
                             Log.e("ERROR", error.toString())

@@ -2,11 +2,13 @@ package test.app.retrofiteducationfilms.fragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -50,10 +52,12 @@ class ListFragment() : Fragment() {
 
         downloadPopular.setOnClickListener {
             repository.downloadPopularMovies()
+            Log.d("COMPLETE", "COMPLETE")
         }
 
         downloadTop.setOnClickListener {
             repository.downloadTopRatedMovies()
+            Log.d("COMPLETE", "COMPLETE")
         }
 
         userViewModel.getMovieList().observe(this, Observer {

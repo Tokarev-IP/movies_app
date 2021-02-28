@@ -6,16 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import test.app.retrofiteducationfilms.R
 import test.app.retrofiteducationfilms.api.Movie
+import test.app.retrofiteducationfilms.api.MoviesResponse
+import test.app.retrofiteducationfilms.db.Movies
 
-
-
-class AllAdapter()  : RecyclerView.Adapter<AllAdapter.AllViewHolder>() {
-
-    private var listMovies: List<Movie> = emptyList()
+class AllAdapter():  PagedListAdapter<Movie , AllAdapter.AllViewHolder>(DIFF_CALLBACK) {
 
     class AllViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         internal val movieTitle: TextView = v.findViewById(R.id.allitem_title)
@@ -32,13 +32,13 @@ class AllAdapter()  : RecyclerView.Adapter<AllAdapter.AllViewHolder>() {
 
     @SuppressLint("ShowToast", "ResourceAsColor")
     override fun onBindViewHolder(holder: AllViewHolder, position: Int) {
-        val current = listMovies[position]
+        val current: Movie? = getItem(position)
 
-        holder.movieTitle.text = current.title
-        holder.overview.text = current.overview
+        holder.movieTitle.text = current?.title
+        holder.overview.text = current?.overview
 
         Picasso.get()
-            .load(current.posterPath)
+            .load(current?.posterPath)
             .placeholder(R.drawable.ic_baseline_image_search_24)
             .error(R.drawable.ic_baseline_image_search_24)
             .resize(400, 680)
@@ -48,12 +48,13 @@ class AllAdapter()  : RecyclerView.Adapter<AllAdapter.AllViewHolder>() {
 
         }
 
-    override fun getItemCount(): Int {
-        return listMovies.size
-    }
+    companion object {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Movie>() {
+            override fun areItemsTheSame(old: Movie,
+                                         new: Movie): Boolean = old.id == new.id
 
-    fun setData(movies: List<Movie>){
-        listMovies = movies
-        notifyDataSetChanged()
+            override fun areContentsTheSame(old: Movie,
+                                            new: Movie): Boolean = old == new
+        }
     }
 }
