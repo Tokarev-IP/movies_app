@@ -37,8 +37,6 @@ class AllFragment : Fragment() {
         val allAdapter = AllAdapter()
         recyclerView.adapter = allAdapter
 
-        val pdataSource = PagedDataSource()
-
         allViewModel.getMovies().observe(this, {
             allAdapter.submitList(it)
         })

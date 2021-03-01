@@ -11,20 +11,14 @@ import test.app.retrofiteducationfilms.api.MoviesResponse
 
 class AllViewModel: ViewModel() {
 
-    val pagedDataSource = PagedDataSourceFactory()
+    private val pagedDataSource = PagedDataSourceFactory()
 
     private val config = PagedList.Config.Builder()
-            .setPageSize(5)
-            .setInitialLoadSizeHint(20)
-            .setPrefetchDistance(5)
+            .setPageSize(10)
+            .setInitialLoadSizeHint(30)
+            .setPrefetchDistance(10)
             .setEnablePlaceholders(false)
             .build()
-
-    lateinit var allMoviesFactory: DataSource.Factory<Int, Movie>
-
-    fun setData(mData: DataSource.Factory<Int, Movie>){
-        allMoviesFactory = mData
-    }
 
     @JvmName("getData1")
     fun getMovies(): LiveData<PagedList<Movie>> {

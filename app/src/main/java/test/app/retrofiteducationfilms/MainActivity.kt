@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import test.app.retrofiteducationfilms.findlist.FindFragment
 import test.app.retrofiteducationfilms.fragments.AllFragment
 import test.app.retrofiteducationfilms.fragments.FavoriteFragment
 import test.app.retrofiteducationfilms.fragments.ListFragment
@@ -19,9 +20,8 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         val bottomNav: BottomNavigationView = findViewById(R.id.bottom_nav)
-        bottomNav.setOnNavigationItemReselectedListener {
+        bottomNav.setOnNavigationItemSelectedListener {
             when (it.itemId) {
-
                 R.id.action_one -> supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.fragment_container, ListFragment.newInstance())
@@ -39,7 +39,14 @@ class MainActivity : AppCompatActivity() {
                     .replace(R.id.fragment_container, AllFragment.newInstance())
                     .addToBackStack(null)
                     .commit()
+
+                R.id.action_four -> supportFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, FindFragment.newInstance())
+                        .addToBackStack(null)
+                        .commit()
             }
+            true
         }
 
             supportFragmentManager

@@ -1,6 +1,5 @@
 package test.app.retrofiteducationfilms.alllist
 
-import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import test.app.retrofiteducationfilms.api.Movie
 

@@ -25,7 +25,6 @@ class MoviesRepository(private val mviewModel : MoviesViewModel) {
                             Log.e("ERROR", error.toString())
                         }
                 )
-        return
     }
 
     @SuppressLint("CheckResult")

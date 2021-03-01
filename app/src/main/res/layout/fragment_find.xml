@@ -4,24 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.AllFragment"
+    tools:context=".findlist.FindFragment"
     android:orientation="vertical"
     android:background="@color/gray"
-    android:paddingHorizontal="5dp"
     >
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Movie search"
-        android:paddingVertical="10dp"
+        android:hint="Find movie from favorite"
+        android:id="@+id/find_edit_text"
         />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:id="@+id/all_recycler"
-        android:scrollbars="vertical"
+        android:id="@+id/find_recycler_view"
         >
     </androidx.recyclerview.widget.RecyclerView>
 
