@@ -1,5 +1,6 @@
 package test.app.retrofiteducationfilms.findlist
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -16,7 +17,8 @@ import test.app.retrofiteducationfilms.db.MoviesRoomDatabase
 import java.util.concurrent.TimeUnit
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.android.schedulers.AndroidSchedulers
-
+import java.util.*
+import io.reactivex.Observable
 
 class FindFragment : Fragment() {
 
@@ -26,6 +28,7 @@ class FindFragment : Fragment() {
         }
     }
 
+    @SuppressLint("CheckResult")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val mInflater = inflater.inflate(R.layout.fragment_find, container, false)
@@ -39,20 +42,22 @@ class FindFragment : Fragment() {
 
         val db= MoviesRoomDatabase.getDatabase(context as AppCompatActivity)
 
-        mEditText.addTextChangedListener { it ->
-            Log.d("FIND", "Searching")
-            db.movieDao().getByTitle(it.toString())
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(
-                            { it.let {
-                                findAdapter.setData(it) }
-                            },{ error ->
-                        Log.e("ERROR", error.toString())
-
-                    }
-                    )
-        }
+        mEditText.addTextChangedListener {
+                if (it.toString() != "") {
+                    Log.d("FIND", "Searching")
+                    db.movieDao().getByTitle(it.toString())
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(
+                                    {
+                                        it?.let {
+                                            findAdapter.setData(it)
+                                        } },
+                                    { error ->
+                                        Log.e("ERROR", error.toString())
+                                    })
+                }
+            }
 
         return mInflater
     }

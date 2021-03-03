@@ -11,12 +11,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/find_title_textView"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:gravity="center"
         />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/find_imageView"
+        android:layout_gravity="center"
         />
 
 </LinearLayout>

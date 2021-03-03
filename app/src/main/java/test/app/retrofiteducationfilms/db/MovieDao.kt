@@ -15,9 +15,12 @@ interface MovieDao {
 
     @Query("SELECT * FROM favorite_movies")
     fun getAll(): DataSource.Factory<Int, Movies>
-//''||:mTitle||'%'
-    @Query("SELECT * FROM favorite_movies WHERE title = :mTitle")
-    fun getByTitle(mTitle: String): Maybe<List<Movies>>
+
+    @Query("SELECT * FROM favorite_movies WHERE title LIKE ''||:title||'%'")
+    fun getByTitle(title: String): Maybe<List<Movies>>
+
+    @Query("SELECT * FROM favorite_movies WHERE id = :id")
+    fun getById(id: Int): Maybe<List<Movies>>
 
     @Insert
     fun insert(movie: Movies): Completable
